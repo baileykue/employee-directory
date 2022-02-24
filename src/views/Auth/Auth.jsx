@@ -1,5 +1,5 @@
 import { useUser } from '../../context/UserContext';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { signInUser, signUpUser } from '../../services/users';
 import AuthForm from '../../components/AuthForm/AuthForm';
 
@@ -25,6 +25,17 @@ export default function Auth({ isSigningUp = false }) {
   return (
     <div>
       <AuthForm handleAuth={handleAuth} />
+      {isSigningUp ? (
+        <>
+          <p>Already have an account?</p>
+          <Link to="/login">Log In</Link>
+        </>
+      ) : (
+        <>
+          <p>Need to make an account?</p>
+          <Link to="/register">Register</Link>
+        </>
+      )}
     </div>
   );
 }
