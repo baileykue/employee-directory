@@ -18,7 +18,7 @@ export default function Home() {
       ) : (
         <>
           <Link to="/register">Register</Link>
-          {' or ' /* done using a "portal" to keep spacing intact */}
+          {' or '}
           <Link to="/login">Log In</Link>
         </>
       )}
