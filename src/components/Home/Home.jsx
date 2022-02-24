@@ -1,6 +1,9 @@
-import React from 'react';
+import { useUser } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
+  const { user } = useUser();
+
   return (
     <>
       <h1>Welcome to the Monsters Inc. Employee Directory!</h1>
@@ -14,9 +17,9 @@ export default function Home() {
         <Link to="/profile">View your profile</Link>
       ) : (
         <>
-          <Link to="/register">Create Account</Link>
+          <Link to="/register">Register</Link>
           {' or ' /* done using a "portal" to keep spacing intact */}
-          <Link to="/login">Sign In</Link>
+          <Link to="/login">Log In</Link>
         </>
       )}
     </>
