@@ -7,10 +7,6 @@ export const ProfileContext = createContext();
 const ProfileProvider = ({ children }) => {
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
-  //   const currentUser = getUser();
-  //   const [user, setUser] = useState(
-  //     currentUser ? { id: currentUser.id, email: currentUser.email } : {}
-  //   );
 
   useEffect(() => {
     const fetchData = async () => {

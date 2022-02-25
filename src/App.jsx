@@ -29,7 +29,7 @@ export default function App() {
                 <Profile />
               </Route>
 
-              <Route path="/profile">
+              <Route exact path="/profile">
                 <ProfileView />
               </Route>
             </ProfileProvider>

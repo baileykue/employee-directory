@@ -1,17 +1,9 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-
 export default function ProfileForm({
   profile,
   handleCreate,
   updateProfileForm,
 }) {
   const { name, email, birthday, bio } = profile;
-
-  // const [email, setEmail] = useState('');
-  // const [name, setName] = useState('');
-  // const [birthday, setBirthday] = useState('');
-  // const [bio, setBio] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();

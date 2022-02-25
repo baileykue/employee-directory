@@ -4,5 +4,19 @@ import { useUser } from '../../context/UserContext';
 export default function Header() {
   const { user } = useUser();
 
-  return <div>{user ? <p>Welcome, {user.email}</p> : <p>Hello! </p>}</div>;
+  return (
+    <header>
+      {user ? (
+        <>
+          <p>Welcome, {user.email.split('@')[0]}</p>
+          <button>Log Out</button>
+        </>
+      ) : (
+        <>
+          <p>Hello! Would yo ulike to sign in?</p>
+          <button>Log In</button>
+        </>
+      )}
+    </header>
+  );
 }
