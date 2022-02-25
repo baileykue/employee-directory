@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
+import styles from './AuthForm.css';
+
 export default function AuthForm({ handleAuth }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { auth_form } = styles;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -10,7 +14,7 @@ export default function AuthForm({ handleAuth }) {
   };
 
   return (
-    <form>
+    <form className={auth_form}>
       <label>
         Email:
         <input type="email" onChange={(e) => setEmail(e.target.value)} />

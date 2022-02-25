@@ -21,10 +21,9 @@ export default function Header() {
           </button>
         </>
       ) : (
-        <>
-          <p>Hello! Would you like to sign in?</p>
-          <Link to="/login">Log In</Link>
-        </>
+        <p>
+          Hello! Would you like to <Link to="/login">Log In</Link>?
+        </p>
       )}
     </header>
   );
