@@ -49,7 +49,9 @@ export default function ProfileForm({
           onChange={(e) => updateProfileForm('bio', e.target.value)}
         />
       </label>
-      <button onClick={handleSubmit}>Save</button>
+      <button aria-label="save" onClick={handleSubmit}>
+        Save
+      </button>
     </form>
   );
 }

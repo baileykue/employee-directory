@@ -8,8 +8,6 @@ export default function ProfileView() {
     loading,
   } = useProfile();
 
-  console.log(birthday);
-
   const history = useHistory();
 
   const handleSubmit = () => {
@@ -25,7 +23,9 @@ export default function ProfileView() {
       <p>Email: {email}</p>
       <p>Birthday: {birthday}</p>
       <p>Bio: {bio}</p>
-      <button onClick={handleSubmit}>Edit</button>
+      <button aria-label="edit" onClick={handleSubmit}>
+        Edit
+      </button>
       <Link to="/">View Home Page</Link>
     </div>
   );

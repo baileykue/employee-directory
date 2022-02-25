@@ -5,7 +5,7 @@ import { ProfileProvider } from './context/ProfileContext';
 import { UserProvider } from './context/UserContext';
 import App from './App';
 
-test('tests that the user can log in and see profile', async () => {
+test.only('that the user can log in and see profile', async () => {
   render(
     <MemoryRouter>
       <UserProvider>
@@ -49,6 +49,48 @@ test('tests that the user can log in and see profile', async () => {
   const greeting = await screen.findByText(/welcome, bailey.kue/i);
   expect(greeting).toBeInTheDocument();
 
-  const name = await screen.findByText(/bailey/i);
+  const userName = await screen.findByText(/bailey/i);
+  expect(userName).toBeInTheDocument();
+
+  const edit = await screen.findByLabelText('edit');
+  expect(edit).toBeInTheDocument();
+  userEvent.click(edit);
+
+  const name = await screen.findByLabelText(/name:/i);
   expect(name).toBeInTheDocument();
+
+  const userEmail = await screen.findByLabelText(/email:/i);
+  expect(userEmail).toBeInTheDocument();
+
+  const birthday = await screen.findByLabelText(/birthday:/i);
+  expect(birthday).toBeInTheDocument();
+
+  const bio = await screen.findByLabelText(/bio:/i);
+  expect(bio).toBeInTheDocument();
+
+  userEvent.type(name, '{selectAll}{del}B-bops');
+  expect(name).toHaveValue('B-bops');
+
+  userEvent.type(userEmail, '{selectAll}{del}b.bops@gmail.com');
+  expect(userEmail).toHaveValue('b.bops@gmail.com');
+
+  userEvent.type(birthday, '{selectAll}{del}1996-08-08');
+  expect(birthday).toHaveValue('1996-08-08');
+
+  userEvent.type(
+    bio,
+    '{selectAll}{del}stressed, depressed, but well dressed & caffinated'
+  );
+  expect(bio).toHaveValue('stressed, depressed, but well dressed & caffinated');
+
+  const save = await screen.findByRole('button', { name: /save/i });
+  expect(save).toBeInTheDocument();
+
+  userEvent.click(save);
+
+  const newName = await screen.findByText(/b-bops/i);
+  expect(newName).toBeInTheDocument();
+
+  const stressed = await screen.findByText(/stressed/i);
+  expect(stressed).toBeInTheDocument();
 });
