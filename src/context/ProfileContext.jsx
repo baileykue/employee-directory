@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { getProfile } from '../services/profile';
 
 export const ProfileContext = createContext();
@@ -9,15 +9,13 @@ const ProfileProvider = ({ children }) => {
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const history = useHistory();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getProfile();
         setProfile(data);
       } catch (error) {
-        history.replace('/profile/create');
+        <Redirect to="/profile/form" />;
       }
       setLoading(false);
     };

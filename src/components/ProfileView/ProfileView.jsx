@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 
 export default function ProfileView() {
@@ -11,7 +11,7 @@ export default function ProfileView() {
   const history = useHistory();
 
   const handleSubmit = () => {
-    history.push('/profile/edit');
+    history.push('/profile/form');
   };
 
   if (loading) return <h3>Loading your profile...</h3>;
@@ -24,6 +24,7 @@ export default function ProfileView() {
       <p>Birthday: {birthday}</p>
       <p>Bio: {bio}</p>
       <button onClick={handleSubmit}>Edit</button>
+      <Link to="/">View Home Page</Link>
     </div>
   );
 }

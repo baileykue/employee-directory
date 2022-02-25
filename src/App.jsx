@@ -20,13 +20,12 @@ export default function App() {
               <Route path="/login">
                 <Auth />
               </Route>
+
               <Route path="/register">
                 <Auth isSigningUp />
               </Route>
-              <PrivateRoute path="/profile/create">
-                <Profile isCreatingProfile />
-              </PrivateRoute>
-              <PrivateRoute path="/profile/edit">
+
+              <PrivateRoute path="/profile/form">
                 <Profile />
               </PrivateRoute>
 
