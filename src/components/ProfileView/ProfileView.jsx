@@ -8,7 +8,7 @@ export default function ProfileView() {
     loading,
   } = useProfile();
 
-  console.log(name);
+  console.log(birthday);
 
   const history = useHistory();
 
