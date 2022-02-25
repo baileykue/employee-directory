@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default function ProfileForm({ profile, setProfile, handleCreate }) {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [bio, setBio] = useState('');
+export default function ProfileForm({
+  profile,
+  handleCreate,
+  updateProfileForm,
+}) {
+  const { name, email, birthday, bio } = profile;
+
+  // const [email, setEmail] = useState('');
+  // const [name, setName] = useState('');
+  // const [birthday, setBirthday] = useState('');
+  // const [bio, setBio] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +26,7 @@ export default function ProfileForm({ profile, setProfile, handleCreate }) {
         <input
           type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => updateProfileForm('name', e.target.value)}
         />
       </label>
       <label>
@@ -28,7 +34,7 @@ export default function ProfileForm({ profile, setProfile, handleCreate }) {
         <input
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => updateProfileForm('email', e.target.value)}
         />
       </label>
       <label>
@@ -36,12 +42,15 @@ export default function ProfileForm({ profile, setProfile, handleCreate }) {
         <input
           type="date"
           value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
+          onChange={(e) => updateProfileForm('date', e.target.value)}
         />
       </label>
       <label>
         Bio:
-        <textarea value={bio} onChange={(e) => setBio(e.target.value)} />
+        <textarea
+          value={bio}
+          onChange={(e) => updateProfileForm('bio', e.target.value)}
+        />
       </label>
       <button onClick={handleSubmit}>Submit</button>
     </form>

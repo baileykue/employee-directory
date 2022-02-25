@@ -4,24 +4,25 @@ import { createProfile, getProfile } from '../../services/profile';
 
 import ProfileView from '../../components/ProfileView/ProfileView';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
+import { useProfile } from '../../context/ProfileContext';
 
 export default function Profile({ isCreatingProfile = false }) {
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState({});
+  // const [loading, setLoading] = useState(true);
+  const { profile, setProfile, setLoading, loading } = useProfile();
   const history = useHistory();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getProfile();
-        setProfile(data);
-      } catch (error) {
-        history.replace('/profile/create');
-      }
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getProfile();
+  //       setProfile(data);
+  //     } catch (error) {
+  //       history.replace('/profile/create');
+  //     }
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handleCreate = async (name, email, bio, birthday) => {
     try {
@@ -40,15 +41,20 @@ export default function Profile({ isCreatingProfile = false }) {
     } catch (error) {}
   };
 
-  if (loading) return <h3>Loading your profile...</h3>;
+  const updateProfileForm = (key, value) => {
+    profile[key] = value;
+    setProfile({ ...profile });
+  };
+
+  if (loading) return <h3>Loading the form...</h3>;
 
   return (
     <div>
-      {profile ? (
-        <ProfileView profile={profile} />
-      ) : (
-        <ProfileForm profile={profile} handleCreate={handleCreate} />
-      )}
+      <ProfileForm
+        profile={profile}
+        handleCreate={handleCreate}
+        updateProfileForm={updateProfileForm}
+      />
     </div>
   );
 }
