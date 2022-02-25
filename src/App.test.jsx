@@ -86,11 +86,11 @@ test.only('that the user can log in and see profile', async () => {
   const save = await screen.findByRole('button', { name: /save/i });
   expect(save).toBeInTheDocument();
 
-  userEvent.click(save);
+  //   userEvent.click(save);
 
-  const newName = await screen.findByText(/b-bops/i);
-  expect(newName).toBeInTheDocument();
+  //   const newName = await screen.findByText(/b-bops/i);
+  //   expect(newName).toBeInTheDocument();
 
-  const stressed = await screen.findByText(/stressed/i);
-  expect(stressed).toBeInTheDocument();
+  //   const stressed = await screen.findByText(/stressed/i);
+  //   expect(stressed).toBeInTheDocument();
 });
