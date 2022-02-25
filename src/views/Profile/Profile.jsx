@@ -44,12 +44,11 @@ export default function Profile({ isCreatingProfile = false }) {
 
   return (
     <div>
-      {/* <ProfileView profile={profile} /> */}
-      <ProfileForm
-        profile={profile}
-        setProfile={setProfile}
-        handleCreate={handleCreate}
-      />
+      {profile ? (
+        <ProfileView profile={profile} />
+      ) : (
+        <ProfileForm profile={profile} handleCreate={handleCreate} />
+      )}
     </div>
   );
 }
