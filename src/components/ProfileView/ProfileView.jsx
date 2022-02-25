@@ -8,6 +8,8 @@ export default function ProfileView() {
     loading,
   } = useProfile();
 
+  console.log(name);
+
   const history = useHistory();
 
   const handleSubmit = () => {

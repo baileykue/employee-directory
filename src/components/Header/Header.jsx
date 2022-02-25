@@ -1,6 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { signOutUser } from '../../services/users';
 
@@ -22,9 +20,7 @@ export default function Header() {
           </button>
         </>
       ) : (
-        <p>
-          Hello! Would you like to <Link to="/login">Log In</Link>?
-        </p>
+        <p>Hello! Please Sign in</p>
       )}
     </header>
   );
