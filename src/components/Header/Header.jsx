@@ -1,20 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import { signOutUser } from '../../services/users';
 
 export default function Header() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   return (
     <header>
-      {user ? (
+      {user.email ? (
         <>
-          <p>Welcome, {user.email.split('@')[0]}</p>
-          <button>Log Out</button>
+          <p>Welcome, {user.email?.split('@')[0]}</p>
+          <button
+            onClick={async () => {
+              await signOutUser();
+              setUser({});
+            }}
+          >
+            Log Out
+          </button>
         </>
       ) : (
         <>
-          <p>Hello! Would yo ulike to sign in?</p>
-          <button>Log In</button>
+          <p>Hello! Would you like to sign in?</p>
+          <Link to="/login">Log In</Link>
         </>
       )}
     </header>
