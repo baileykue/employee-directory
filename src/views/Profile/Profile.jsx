@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { createProfile } from '../../services/profile';
+import { createProfile, updateProfile } from '../../services/profile';
 
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { useProfile } from '../../context/ProfileContext';
@@ -20,9 +20,14 @@ export default function Profile({ isCreatingProfile = false }) {
     }
   };
 
-  const handleEdit = async () => {
+  const handleEdit = async (name, email, bio, birthday) => {
     try {
-    } catch (error) {}
+      const [data] = await updateProfile({ name, email, bio, birthday });
+      setProfile(data);
+      history.push('/profile');
+    } catch (error) {
+      throw new Error('something went wrong! please try again');
+    }
   };
 
   const updateProfileForm = (key, value) => {
@@ -37,6 +42,7 @@ export default function Profile({ isCreatingProfile = false }) {
       <ProfileForm
         profile={profile}
         handleCreate={handleCreate}
+        handleEdit={handleEdit}
         updateProfileForm={updateProfileForm}
       />
     </div>

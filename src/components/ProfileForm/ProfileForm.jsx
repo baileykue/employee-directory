@@ -4,24 +4,23 @@ import { useParams } from 'react-router-dom';
 export default function ProfileForm({
   profile,
   handleCreate,
+  handleEdit,
   updateProfileForm,
 }) {
   const { name, email, birthday, bio } = profile;
 
-  const {
-    location: { pathname },
-  } = useHistory();
-  console.log(pathname);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    handleCreate(name, email, bio, birthday);
+    if (!name) {
+      handleCreate(name, email, bio, birthday);
+    } else {
+      handleEdit(name, email, bio, birthday);
+    }
   };
 
   return (
     <form>
-      {!profile.name && <h3>You must create a profile to continue</h3>}
+      {!name && <h3>You must create a profile to continue</h3>}
       <label>
         Name:
         <input
