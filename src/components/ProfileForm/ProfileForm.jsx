@@ -1,3 +1,6 @@
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 export default function ProfileForm({
   profile,
   handleCreate,
@@ -5,8 +8,14 @@ export default function ProfileForm({
 }) {
   const { name, email, birthday, bio } = profile;
 
+  const {
+    location: { pathname },
+  } = useHistory();
+  console.log(pathname);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     handleCreate(name, email, bio, birthday);
   };
 
@@ -44,7 +53,7 @@ export default function ProfileForm({
           onChange={(e) => updateProfileForm('bio', e.target.value)}
         />
       </label>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit}>Save</button>
     </form>
   );
 }
