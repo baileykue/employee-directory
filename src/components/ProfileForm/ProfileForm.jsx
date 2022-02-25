@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ export default function ProfileForm({
   return (
     <form>
       {!name && <h3>You must create a profile to continue</h3>}
+      {name && <Redirect to="/profile" />}
       <label>
         Name:
         <input
